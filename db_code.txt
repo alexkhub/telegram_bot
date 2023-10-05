@@ -1,0 +1,22 @@
+CREATE TABLE users (
+    user_id   INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE ,
+    telegram_id TEXT UNIQUE,
+    admin BOOLEAN DEFAULT 0,
+    blocked_user BOOLEAN DEFAULT 0
+);
+
+
+CREATE TABLE category(
+category_id   INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE ,
+category_name CHAR(30)
+);
+
+CREATE TABLE links (
+    links_id   INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE ,
+    link_name CHAR(80),
+    link  TEXT,
+    category INTEGER,
+    FOREIGN KEY (category)  REFERENCES category (category_id)
+
+);
+
