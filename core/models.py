@@ -41,12 +41,5 @@ class Links(Model):
         db_table = 'links'
 
 
-# with db:
-#     db.create_tables([Users, Categorys, Links])
-#
-# db.connect()
-# db.commit()
-# db.close()
 
-for user in Users.select():
-    print(user.user_name)
+
