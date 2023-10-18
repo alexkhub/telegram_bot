@@ -38,6 +38,7 @@ async def main() -> None:
     dp.message.register(create_new_link, Command(commands='new_link'))
     dp.message.register(get_link_name, Steps_New_Link.GET_LINK_NAME)
     dp.message.register(get_link, Steps_New_Link.GET_LINK)
+    dp.message.register(select_category, Steps_New_Link.SELECT_CATEGORY)
     dp.message.register(call_back, F.text == 'привет')
     try:
 

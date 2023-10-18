@@ -33,9 +33,12 @@ async def get_link(message: Message, state: FSMContext) -> None:
 
 async  def select_category(message: Message, state : FSMContext) -> None:
     await message.answer(f'вы создали ссылку')
-    await state.update_data(category=message.text)
     context_data = await  state.get_data()
-    await message.answer(f' data {context_data}')
+    link = context_data.get('link')
+    name = context_data.get('name')
+    category = message.text
+
+    await state.clear()
 
 
 
