@@ -3,7 +3,7 @@ from operator import mod
 
 from peewee import *
 
-db = SqliteDatabase('C:\\Users\\ПК--5\\PycharmProjects\\telegram_bot\\bot_db.sqlite3')
+db = SqliteDatabase('//home//user//PycharmProjects//telegram_bot')
 
 
 class Users(Model):
