@@ -15,9 +15,28 @@ async def call_back(message: Message, bot: Bot) -> None:
 
 
 async def create_new_link(message: Message, state: FSMContext) -> None:
-    await message.answer(f'{message.from_user.full_name}, введите ссылку')
+    await message.answer(f'{message.from_user.full_name}, введите название')
     await state.set_state(Steps_New_Link.GET_LINK_NAME)
 
 
-async def get_link(message: Message) -> None:
-    await message.answer(f' ссылка {message.text}, теперь введите название', )
+async def get_link_name(message: Message, state: FSMContext) -> None:
+    await message.answer(f' ссылка "{message.text}", теперь введите ссылку')
+    await state.update_data(link=message.text)
+    await state.set_state(Steps_New_Link.GET_LINK)
+
+
+async def get_link(message: Message, state: FSMContext) -> None:
+    await message.answer(f'названиме "{message.text}", теперь укажите категорию')
+    await state.update_data(name=message.text)
+    await state.set_state(Steps_New_Link.SELECT_CATEGORY)
+
+
+async  def select_category(message: Message, state : FSMContext) -> None:
+    await message.answer(f'вы создали ссылку')
+    await state.update_data(category=message.text)
+    context_data = await  state.get_data()
+    await message.answer(f' data {context_data}')
+
+
+
+
