@@ -1,45 +1,43 @@
 from datetime import datetime
-from operator import mod
+import sqlalchemy as db
+from sqlalchemy import Column, Integer, Boolean, String, DateTime, ForeignKey
+from sqlalchemy.future import engine
+from sqlalchemy.orm import declarative_base
 
-from peewee import *
-
-db = SqliteDatabase('//home//user//PycharmProjects//telegram_bot')
-
-
-class Users(Model):
-    user_id = PrimaryKeyField(unique=True)
-    user_name = CharField(max_length=40, verbose_name='Имя пользователя')
-    user_url = CharField(max_length=50, verbose_name='URL пользователя', null=True)
-    phone_number = CharField(max_length=14, verbose_name='Номер телефона')
-    admin = BooleanField(default=False, verbose_name='Админ')
-    blocked_user = BooleanField(default=False, verbose_name='Блокировка')
-    created_at = DateField(default=datetime.now())
-
-    class Meta:
-        database = db
-        db_table = 'users'
+engine = db.create_engine("sqlite:///bot_db.sqlite3")
+Base = declarative_base()
 
 
-class Categorys(Model):
-    category_id = PrimaryKeyField(unique=True)
-    category_name = CharField(max_length=40, verbose_name='Категория')
+class Users(Base):
+    __tablename__ = 'users'
 
-    class Meta:
-        database = db
-        db_table = 'categorys'
+    user_id = Column(Integer, primary_key=True, )
+    user_name = Column(String(50), nullable=False)
+    user_url = Column(String(70), unique=True, nullable=True)
+    phone_number = Column(String(14), unique=True, nullable=False)
+    admin = Column(Boolean, default=False)
+    blocked_user = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.now())
 
 
-class Links(Model):
-    link_id = PrimaryKeyField(unique=True)
-    link_name = CharField(max_length=40, verbose_name='Название статьи')
-    link = CharField(max_length=255, verbose_name='Ссылка')
-    category = ForeignKeyField(Categorys, verbose_name='Категория')
-    user = ForeignKeyField(Users, verbose_name='Пользователь')
+class Categorys(Base):
+    __tablename__ = 'categorys'
+
+    category_id = Column(Integer, primary_key=True, )
+    category_name = Column(String(30), unique=True, nullable=False)
+
+
+class Links(Base):
+    __tablename__ = 'links'
+    link_id = Column(Integer, primary_key=True, )
+    link_name = Column(String(50), nullable=False)
+    link = Column(String(250), nullable=False)
+    category = Column(Integer, ForeignKey('categorys.category_id'))
+    user = Column(Integer, ForeignKey('users.user_id'))
 
     class Meta:
         database = db
         db_table = 'links'
 
 
-
-
+Base.metadata.create_all(engine)
