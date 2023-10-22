@@ -16,6 +16,10 @@ async def set_commands(bot: Bot):
         BotCommand(
             command='new_link',
             description='новая ссылка'
-        )
+        ),
+        BotCommand(
+            command='registration',
+            description='регистрация'
+        ),
     ]
     await bot.set_my_commands(commands, BotCommandScopeDefault())
