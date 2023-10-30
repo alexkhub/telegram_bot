@@ -5,6 +5,7 @@ from core.utils.machine_condition import Steps_New_Link
 from aiogram.fsm.context import FSMContext
 from core.utils.models import *
 from core.utils.database_commands import *
+from core.keyboards.inline import categories_keyboard
 
 
 async def user_start_bot(message: Message, bot: Bot):
@@ -44,7 +45,7 @@ async def get_link_name(message: Message, state: FSMContext) -> None:
 
 
 async def get_link(message: Message, state: FSMContext) -> None:
-    await message.answer(f'ссылка "{message.text}", теперь укажите категорию')
+    await message.answer(f'ссылка "{message.text}", теперь укажите категорию', reply_markup=categories_keyboard)
     await state.update_data(link=message.text)
     await state.set_state(Steps_New_Link.SELECT_CATEGORY)
 
