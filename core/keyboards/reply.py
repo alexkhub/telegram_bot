@@ -1,6 +1,6 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 
-reply_keyboard = ReplyKeyboardMarkup(keyboard=[
+reply_keyboard = ReplyKeyboardMarkup(resize_keybord=True, keyboard=[
     [
         KeyboardButton(
             text='регистрация'

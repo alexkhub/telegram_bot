@@ -6,6 +6,7 @@ from aiogram.fsm.context import FSMContext
 from core.utils.models import *
 from core.utils.database_commands import *
 from core.keyboards.inline import categories_keyboard
+from core.config import CATEGORIES, HELP_TEXT
 
 
 async def user_start_bot(message: Message, bot: Bot):
@@ -66,7 +67,12 @@ async def select_category(message: Message, state: FSMContext) -> None:
         await message.answer('Ошибка сохранения')
     await state.clear()
 
+
 # конец создания ссылки
 
-async def get_category(message:Message) -> None:
-    await message.answer(f'список всех категорий', reply_markup=categories_keyboard)
+async def get_category(message: Message) -> None:
+    await message.answer(f'список всех категорий: {CATEGORIES}', )
+
+
+async def get_help(message: Message) -> None:
+    await message.answer(f'{HELP_TEXT}')

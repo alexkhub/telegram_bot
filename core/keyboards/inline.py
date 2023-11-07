@@ -6,19 +6,21 @@ categories_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text='регистрация'
+                text='django',
+                callback_data='django'
             ),
             InlineKeyboardButton(
-                text='посмотреть статьи'
+                text='python',
+                callback_data='python'
             )
         ],
-        [
-            InlineKeyboardButton(
-                text='категории'
-            ),
-            InlineKeyboardButton(
-                text='поиск'
-            )
-        ]
+        # [
+        #     InlineKeyboardButton(
+        #         text='категории'
+        #     ),
+        #     InlineKeyboardButton(
+        #         text='поиск'
+        #     )
+        # ]
     ]
 )

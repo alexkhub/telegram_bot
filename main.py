@@ -13,6 +13,7 @@ from core.config import *
 from core.handlers.message_handlers import *
 from core.utils.commands import *
 from core.keyboards.reply import *
+from core.handlers.callback_query_handler import *
 
 dp = Dispatcher()
 
@@ -36,11 +37,13 @@ async def main() -> None:
     dp.message.register(create_new_link, Command(commands='new_link'))
     dp.message.register(register_user, Command(commands='registration'))
     dp.message.register(get_category, Command(commands='check_categories'))
+    dp.message.register(get_help, Command(commands='get_help'))
     dp.message.register(get_link_name, Steps_New_Link.GET_LINK_NAME)
     dp.message.register(get_link, Steps_New_Link.GET_LINK)
     dp.message.register(select_category, Steps_New_Link.SELECT_CATEGORY)
     dp.message.register(call_back, F.text == 'привет')
     dp.message.register(register_user, F.text == 'регистрация')
+    dp.callback_query.register(vote_collback)
     try:
 
         await dp.start_polling(bot)
