@@ -9,7 +9,7 @@ from core.keyboards.inline import categories_keyboard
 from main import dp
 
 
-async def vote_collback(callback: CallbackQuery):
+async def category_callback(callback: CallbackQuery):
     if callback.data == 'django':
         return await callback.message.answer("напишите '1' ")
     elif callback.data == 'python':
