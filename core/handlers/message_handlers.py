@@ -67,3 +67,6 @@ async def select_category(message: Message, state: FSMContext) -> None:
     await state.clear()
 
 # конец создания ссылки
+
+async def get_category(message:Message) -> None:
+    await message.answer(f'список всех категорий', reply_markup=categories_keyboard)

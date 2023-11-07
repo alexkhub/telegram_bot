@@ -21,5 +21,9 @@ async def set_commands(bot: Bot):
             command='registration',
             description='регистрация'
         ),
+        BotCommand(
+            command='check_categories',
+            description='посмотреть категории'
+        )
     ]
     await bot.set_my_commands(commands, BotCommandScopeDefault())

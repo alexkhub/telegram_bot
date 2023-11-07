@@ -1,7 +1,24 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 
-kb = [
-        [KeyboardButton(text="С пюрешкой")],
-        [KeyboardButton(text="Без пюрешки")]
+
+categories_keyboard = InlineKeyboardMarkup(
+
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(
+                text='регистрация'
+            ),
+            InlineKeyboardButton(
+                text='посмотреть статьи'
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text='категории'
+            ),
+            InlineKeyboardButton(
+                text='поиск'
+            )
+        ]
     ]
-categories_keyboard = ReplyKeyboardMarkup(keyboard=kb)
+)

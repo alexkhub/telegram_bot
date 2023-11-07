@@ -14,7 +14,7 @@ async def register_user_command(message):
         session.commit()
         return True
     except IntegrityError:
-        session.rollback()  # откатываем session.add(user)
+        session.rollback()
         return False
 
 
@@ -30,10 +30,15 @@ async def register_list( link_name, link,  category, user):
         session.commit()
         return True
     except IntegrityError:
-        session.rollback()  # откатываем session.add(user)
+        session.rollback()
         return False
 
 
 async def check_registration(message):
     connect = session.query(Users).filter(Users.telegram_id == int(message.from_user.id)).first()
     return connect
+
+
+
+
+    

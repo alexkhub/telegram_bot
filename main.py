@@ -35,6 +35,7 @@ async def main() -> None:
     dp.message.register(user_start_bot, Command(commands=['start', 'run']))  # активация при запуске
     dp.message.register(create_new_link, Command(commands='new_link'))
     dp.message.register(register_user, Command(commands='registration'))
+    dp.message.register(get_category, Command(commands='check_categories'))
     dp.message.register(get_link_name, Steps_New_Link.GET_LINK_NAME)
     dp.message.register(get_link, Steps_New_Link.GET_LINK)
     dp.message.register(select_category, Steps_New_Link.SELECT_CATEGORY)
